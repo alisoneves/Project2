@@ -129,11 +129,14 @@
                 <h5><span class="label label-primary">Answer</span></h5>
                 <p>A: @question.answer</p>
                 <form>
-                    <div style="display: none" class="form-group">
-                        <textarea class="form-control" rows="5"></textarea>
-                        @* provides toast notification in the top right corner of the screen *@
-                        <button onclick="toastr.success('Your reply will be posted once it has been reviewed by MissionConnections moderators. Thanks!','Reply sent!')" type="reset" value="Clear" class="submit-button btn btn-success">Submit</button>
-                    </div>
+                    @using (Html.BeginForm("SubmitReply", "Mission", FormMethod.Post))
+                    {
+                    <label for="question">Post a Reply: </label>
+                    @Html.TextArea("reply")
+                    @*<button type="submit">Submit Reply</button>*@
+                    //this is supposed to pass the mission question ID to the submitreply function for the update query
+                    <input type="button" value="Go Somewhere Else" onclick="location.href='@Url.Action(" SubmitReply", "Mission" , new { questionID=item.missionQuestionID })'" />
+                    }
                 </form>
                 <button type="submit" class="btn btn-primary reply-button">Reply</button>
             </div>

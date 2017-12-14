@@ -68,5 +68,17 @@ namespace Project2Final.Controllers
             return RedirectToAction("Index", "Mission");
         }
 
+        [HttpPost]
+        public ActionResult SubmitReply(FormCollection form, int questionID)
+        {
+            String userReply = form["reply"].ToString();
+
+            var updateQuery = "UPDATE MissionQuestions SET answer = '" + userReply + "' WHERE missionQuestionID = " + questionID;
+
+            db.Database.ExecuteSqlCommand(updateQuery);
+            db.SaveChanges();
+            return RedirectToAction("Index", "Mission");
+        }
+
     }
 }

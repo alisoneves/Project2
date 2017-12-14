@@ -12,7 +12,6 @@ namespace Project2Final.Models
     {
         [Key]
         public int missionQuestionID { get; set; }
-        public int? userID { get; set; }
         public string question { get; set; }
         public string answer { get; set; }
         public string userEmail { get; set; }
