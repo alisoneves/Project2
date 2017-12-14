@@ -1,0 +1,168 @@
+﻿@model Project2Final.Models.Mission
+@{
+    ViewBag.Title = "Mission Detail";
+}
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+@* allows for form to be dynamically toggled on click *@
+<script>
+    $(document).ready(function () {
+        $(".reply-button").click(function () {
+            $(".form-group").toggle(100);
+            $("textarea").trigger("reset");
+        });
+});
+</script>
+
+@* allows for submit button to hide the text form *@
+<script>
+    $(document).ready(function () {
+        $(".submit-button").click(function () {
+            $(".form-group").hide(100);
+            $("textarea").trigger("reset");
+        });
+    });
+</script>
+
+<ol class="breadcrumb">
+    <li>@Html.ActionLink("Home", "Index", "Home", null, null)</li>
+    <li>@Html.ActionLink("Missions", "Index", "Mission", null, null)</li>
+    <li class="active">@Model.Name</li>
+</ol>
+<h2>@Model.Name Mission</h2>
+<div class="jumbotron">
+    <img src=@Model.FlagURL />
+</div>
+@* shows all of the values for the mission from the database *@
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Name)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.President)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Address)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Language)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Climate)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.DominateReligion)
+        </th>
+    </tr>
+    <tr>
+        <th>
+            @Html.DisplayFor(model => Model.Name)
+        </th>
+        <th>
+            @Html.DisplayFor(model => Model.President)
+        </th>
+        <th>
+            @Html.DisplayFor(model => Model.Address)
+        </th>
+        <th>
+            @Html.DisplayFor(model => Model.Language)
+        </th>
+        <th>
+            @Html.DisplayFor(model => Model.Climate)
+        </th>
+        <th>
+            @Html.DisplayFor(model => Model.DominateReligion)
+        </th>
+    </tr>
+</table>
+<div class="row" style="text-align: center">
+    <h3>FAQ's</h3>
+</div>
+@* Hard coded questions and answers with a reply button that dynamically loads a text box *@
+<div class="container ">
+    <div class="panel-group" id="faqAccordion">
+        
+            @foreach (var item in ViewBag.questions)
+            {
+                  <div class="panel panel-default ">
+                    <div class="panel-heading accordion-toggle question-toggle collapsed" data-toggle="collapse" data-parent="#faqAccordion" data-target="#@item.missionQuestionID">
+                        <h4 class="panel-title">
+                            <a href="#" class="ing">@item.userEmail</a><br /><br />
+                            <a href="#" class="ing">Q: @item.question</a>
+                        </h4>
+                    </div>
+
+                    <div id="@item.missionQuestionID " class="panel-collapse collapse" style="height: 0px;">
+                        <div class="panel-body">
+                            <h5><span class="label label-primary">Answer</span></h5>
+                            <p>A: @item.answer</p>
+                            <form>
+                                <div style="display: none" class="form-group">
+                                    <textarea class="form-control" rows="5"></textarea>
+                                    @* provides toast notification in the top right corner of the screen *@
+                                    <button onclick="toastr.success('Your reply will be posted once it has been reviewed by MissionConnections moderators. Thanks!','Reply sent!')" type="reset" value="Clear" class="submit-button btn btn-success">Submit</button>
+                                </div>
+                            </form>
+                            <button type="submit" class="btn btn-primary reply-button">Reply</button>
+                        </div>
+                    </div>
+                </div>
+            }
+    </div>
+    <!--/panel-group-->
+</div>
+
+<div class="panel-group" id="accordion">
+    @foreach (var question in ViewBag.questions)
+    {
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            <h4 class="panel-title">
+                <a data-toggle="collapse" data-parent="#accordion" href="#@question.missionQuestionID" class="collapsed">
+                    Q: @question.question
+                </a>
+            </h4>
+        </div>
+        <div id="@question.missionQuestionID" class="panel-collapse collapsed collapse">
+            <div class="panel-body">
+                <h5><span class="label label-primary">Answer</span></h5>
+                <p>A: @question.answer</p>
+                <form>
+                    <div style="display: none" class="form-group">
+                        <textarea class="form-control" rows="5"></textarea>
+                        @* provides toast notification in the top right corner of the screen *@
+                        <button onclick="toastr.success('Your reply will be posted once it has been reviewed by MissionConnections moderators. Thanks!','Reply sent!')" type="reset" value="Clear" class="submit-button btn btn-success">Submit</button>
+                    </div>
+                </form>
+                <button type="submit" class="btn btn-primary reply-button">Reply</button>
+            </div>
+        </div>
+    </div>
+    }
+</div>
+
+@* Post question form, deletes text on submit *@
+<div class="row">
+    <div style="text-align: center">
+        <h3>Submit a Question:</h3>
+    </div>
+    <div class="col-md-3">
+
+    </div>
+    <div class="col-md-6">
+        <div>
+            @using (Html.BeginForm("SubmitNewQuestion", "Mission", FormMethod.Post))
+            {
+                <label for="question">Question</label>
+                @Html.TextArea("question")
+                @Html.Hidden("missionID", Model.ID)
+                <button type="submit">Submit Question</button>
+            }
+            
+        </div>
+    </div>
+    <div class="col-md-3">
+
+    </div>
+</div>

@@ -1,0 +1,21 @@
+﻿@model IEnumerable<Project2Final.Models.Mission>
+
+@{
+    ViewBag.Title = "Missions";
+}
+
+<h2>Missions</h2>
+
+<div class="btn-group">
+    <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
+        Mission List <span class="caret"></span>
+    </button>
+    <ul class="dropdown-menu">
+        @* dynamically populates dropdown will all missions in database *@
+        @foreach (var item in Model)
+        {
+            //clicking on the item returns the detail view with the id as a parameter
+            <li>@Html.ActionLink(item.Name, "Detail", "Mission", new { id = item.ID }, null)</li>
+        }
+    </ul>
+</div>
