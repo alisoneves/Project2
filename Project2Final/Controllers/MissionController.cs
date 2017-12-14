@@ -56,7 +56,7 @@ namespace Project2Final.Controllers
             var usersEmail = TempData["email"].ToString(); //is the email not the userID?
             string missionID = form[1].ToString();
 
-            db.Database.ExecuteSqlCommand("INSERT INTO MissionQuestions VALUES(null, " + newQuestion + ", null, " + usersEmail + ", " + missionID + ")");
+            db.Database.ExecuteSqlCommand("INSERT INTO MissionQuestions VALUES('" + newQuestion + "', null, '" + usersEmail + "', '" + missionID + "')");
             db.SaveChanges();
 
             //Mission mission = db.Missions.Find(missionID);
@@ -65,19 +65,21 @@ namespace Project2Final.Controllers
             //    return HttpNotFound();
             //}
             //return View(mission);
-            return RedirectToAction("Index", "Mission");
+            return RedirectToAction("Detail", "Mission", new { id = missionID });
         }
 
         [HttpPost]
-        public ActionResult SubmitReply(FormCollection form, int questionID)
+        public ActionResult SubmitReply(FormCollection form)
         {
-            String userReply = form["reply"].ToString();
+            string userReply = form["reply"].ToString();
+            string questionID = form[1].ToString();
+            string missionID = form[2].ToString();
 
             var updateQuery = "UPDATE MissionQuestions SET answer = '" + userReply + "' WHERE missionQuestionID = " + questionID;
 
             db.Database.ExecuteSqlCommand(updateQuery);
             db.SaveChanges();
-            return RedirectToAction("Index", "Mission");
+            return RedirectToAction("Detail", "Mission", new { id = missionID });
         }
 
     }

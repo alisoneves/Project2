@@ -79,40 +79,7 @@
 <div class="row" style="text-align: center">
     <h3>FAQ's</h3>
 </div>
-@* Hard coded questions and answers with a reply button that dynamically loads a text box *@
-<div class="container ">
-    <div class="panel-group" id="faqAccordion">
-        
-            @foreach (var item in ViewBag.questions)
-            {
-                  <div class="panel panel-default ">
-                    <div class="panel-heading accordion-toggle question-toggle collapsed" data-toggle="collapse" data-parent="#faqAccordion" data-target="#@item.missionQuestionID">
-                        <h4 class="panel-title">
-                            <a href="#" class="ing">@item.userEmail</a><br /><br />
-                            <a href="#" class="ing">Q: @item.question</a>
-                        </h4>
-                    </div>
-
-                    <div id="@item.missionQuestionID " class="panel-collapse collapse" style="height: 0px;">
-                        <div class="panel-body">
-                            <h5><span class="label label-primary">Answer</span></h5>
-                            <p>A: @item.answer</p>
-                            <form>
-                                <div style="display: none" class="form-group">
-                                    <textarea class="form-control" rows="5"></textarea>
-                                    @* provides toast notification in the top right corner of the screen *@
-                                    <button onclick="toastr.success('Your reply will be posted once it has been reviewed by MissionConnections moderators. Thanks!','Reply sent!')" type="reset" value="Clear" class="submit-button btn btn-success">Submit</button>
-                                </div>
-                            </form>
-                            <button type="submit" class="btn btn-primary reply-button">Reply</button>
-                        </div>
-                    </div>
-                </div>
-            }
-    </div>
-    <!--/panel-group-->
-</div>
-
+@* dynamic questions and answers with a reply button that dynamically loads a text box *@
 <div class="panel-group" id="accordion">
     @foreach (var question in ViewBag.questions)
     {
@@ -128,17 +95,18 @@
             <div class="panel-body">
                 <h5><span class="label label-primary">Answer</span></h5>
                 <p>A: @question.answer</p>
-                <form>
+                <div>
                     @using (Html.BeginForm("SubmitReply", "Mission", FormMethod.Post))
                     {
-                    <label for="question">Post a Reply: </label>
-                    @Html.TextArea("reply")
-                    @*<button type="submit">Submit Reply</button>*@
-                    //this is supposed to pass the mission question ID to the submitreply function for the update query
-                    <input type="button" value="Go Somewhere Else" onclick="location.href='@Url.Action(" SubmitReply", "Mission" , new { questionID=item.missionQuestionID })'" />
+                         int questionID = question.missionQuestionID;
+                        <label for="reply">Post a Reply: </label>
+                        @Html.TextArea("reply")
+                        @Html.Hidden("questionID", questionID)
+                        @Html.Hidden("missionID", Model.ID)
+                        //this is supposed to pass the mission question ID to the submitreply function for the update query
+                        <button type="submit">Submit Question</button>
                     }
-                </form>
-                <button type="submit" class="btn btn-primary reply-button">Reply</button>
+                </div>
             </div>
         </div>
     </div>
