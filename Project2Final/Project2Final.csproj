@@ -212,7 +212,17 @@
     <Content Include="Content\255px-Flag_of_New_York.svg.png" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\missionaries1.jpg" />
+    <Content Include="Content\missionaries2.jpg" />
+    <Content Include="Content\missionaries3.jpg" />
+    <Content Include="Content\missionaries4.jpg" />
+    <Content Include="Content\missionaries5.jpeg" />
+    <Content Include="Content\missionaries6.jpg" />
+    <Content Include="Content\missionaries7.jpg" />
     <Content Include="Content\philippines-sister-missionaries-praying-teaching-ridin-1361351-wallpaper.jpg" />
+    <Content Include="Content\Project2family.jpg" />
+    <Content Include="Content\project2map.gif" />
+    <Content Include="Content\Project2temple.jpg" />
     <Content Include="Content\romania-missionaries-adults-classroom-talking-1312424-wallpaper.jpg" />
     <Content Include="Content\romania-missionaries-teaching-man-1312487-wallpaper.jpg" />
     <Content Include="Content\sister-missionaries-956170-wallpaper.jpg" />

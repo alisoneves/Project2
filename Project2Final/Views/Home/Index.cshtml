@@ -4,6 +4,26 @@
     ViewBag.Title = "Home Page";
 }
 @* dynamically moving pictures *@
+
+<style>
+    img
+    {
+        width: 100%;
+        height: 100%;
+    }
+
+    .carousel-inner img {
+        background-size: cover;
+        background-position: center;
+        background-repeat: no-repeat;
+    }
+
+    .carousel-inner {
+        background-size: cover;
+        background-position: center;
+        background-repeat: no-repeat;
+    }
+</style>
 <div id="myCarousel" class="carousel slide" data-ride="carousel" data-interval="3000">
     <div class="carousel-inner">
         <div class="item active">
@@ -23,23 +43,42 @@
         </div>
     </div>
 </div>
-<div class="jumbotron" style="text-align: center">
-    <h1>MissionConnections</h1>
+<div class="center" style="text-align: center">
+    <h1>Mission Connections</h1>
     <h2><em>"If ye are prepared ye shall not fear."</em></h2>
-    <h4>Doctrine and Covenants 38:30</h4>
+    <h4>Doctrine and Covenants 38:30</h4><br /><br />
     <p>Missions may seem scary, but with advice from thousands of missionaries from hundreds of missions around the world, there's no need to worry.</p>
     @* call to action *@
-    <a class="btn btn-danger btn btn-large"><h3>View Missions Now</h3></a>
 </div>
 @* links to rest of website *@
+
+<style>
+
+
+
+    .this
+    {
+        height: 210px;
+        width:360px;
+    }
+</style>
 <div class="row">
     <div class="col-md-4" style="text-align: center">
-        <p>@Html.ActionLink("Missions", "Index", "Mission", null, new { @class = "btn btn-large btn btn-primary" })</p>
+        <a href='@Url.Action("Index", "Mission")'> <img class="this" src='@Url.Content("~/Content/Project2map.gif")' /></a>
     </div>
     <div class="col-md-4" style="text-align: center">
-        <p>@Html.ActionLink("About Us", "About", "Home", null, new { @class = "btn btn-large btn btn-primary" }) </p>
+        <a href='@Url.Action("About", "Home")'> <img class="this"src='@Url.Content("~/Content/Project2temple.jpg")' /></a>
     </div>
     <div class="col-md-4" style="text-align: center">
-        <p>@Html.ActionLink("Contact", "Contact", "Home", null, new { @class = "btn btn-large btn btn-primary" }) </p>
+        <a href='@Url.Action("Contact", "Home")'> <img class="this"src='@Url.Content("~/Content/Project2family.jpg")' /></a>
     </div>
+</div> <br />
+<div class="row">
+    <div class="col-md-4" style="text-align: center">
+        <p><b>Our Missions</b></p>
+    </div>
+    <div class="col-md-4" style="text-align: center">
+        <p><b>About Us</b></p>    </div>
+    <div class="col-md-4" style="text-align: center">
+        <p><b>Contact</b></p>    </div>
 </div>
