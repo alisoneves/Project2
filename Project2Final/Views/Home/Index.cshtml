@@ -1,0 +1,45 @@
+﻿@* I have have no idea what any of this code does *@
+
+@{
+    ViewBag.Title = "Home Page";
+}
+@* dynamically moving pictures *@
+<div id="myCarousel" class="carousel slide" data-ride="carousel" data-interval="3000">
+    <div class="carousel-inner">
+        <div class="item active">
+            <img src="~/Content/social-interaction-missionaries-fellowshipping-1262209-wallpaper.jpg" alt="">
+        </div>
+        <div class="item">
+            <img src="~/Content/philippines-sister-missionaries-praying-teaching-ridin-1361351-wallpaper.jpg" alt="">
+        </div>
+        <div class="item">
+            <img src="~/Content/romania-missionaries-teaching-man-1312487-wallpaper.jpg" alt="">
+        </div>
+        <div class="item">
+            <img src="~/Content/sister-missionaries-956170-wallpaper.jpg" alt="">
+        </div>
+        <div class="item">
+            <img src="~/Content/romania-missionaries-adults-classroom-talking-1312424-wallpaper.jpg" alt="">
+        </div>
+    </div>
+</div>
+<div class="jumbotron" style="text-align: center">
+    <h1>MissionConnections</h1>
+    <h2><em>"If ye are prepared ye shall not fear."</em></h2>
+    <h4>Doctrine and Covenants 38:30</h4>
+    <p>Missions may seem scary, but with advice from thousands of missionaries from hundreds of missions around the world, there's no need to worry.</p>
+    @* call to action *@
+    <a class="btn btn-danger btn btn-large"><h3>View Missions Now</h3></a>
+</div>
+@* links to rest of website *@
+<div class="row">
+    <div class="col-md-4" style="text-align: center">
+        <p>@Html.ActionLink("Missions", "Index", "Mission", null, new { @class = "btn btn-large btn btn-primary" })</p>
+    </div>
+    <div class="col-md-4" style="text-align: center">
+        <p>@Html.ActionLink("About Us", "About", "Home", null, new { @class = "btn btn-large btn btn-primary" }) </p>
+    </div>
+    <div class="col-md-4" style="text-align: center">
+        <p>@Html.ActionLink("Contact", "Contact", "Home", null, new { @class = "btn btn-large btn btn-primary" }) </p>
+    </div>
+</div>
