@@ -33,9 +33,30 @@
         @RenderBody()
         <hr />
         <footer>
-            <p>&copy; @DateTime.Now.Year - Mission Connections</p>
+            <p><u>      &copy; @DateTime.Now.Year - Mission Connections       </u></p>
         </footer>
     </div>
+    <style>
+
+        .navbar-inverse {
+            background-color: #004080;
+        }
+
+            .navbar-inverse .navbar-nav > .active > a, .navbar-inverse .navbar-nav > .active > a:focus, .navbar-inverse .navbar-nav > .active > a:hover {
+                color: #004080;
+            }
+        body, h1, h2, p {
+            font-family: 'Palatino Linotype';
+        }
+        footer {
+         
+            left: 0;
+            bottom: 0;
+            width: 100%;
+            color: black;
+            text-align: center;
+        }
+    </style>
 
     @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/bootstrap")
