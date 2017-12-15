@@ -37,8 +37,12 @@ namespace Project2Final.Controllers
                 return HttpNotFound();
             }
 
-            string userEmail = TempData["email"].ToString();
+            string userEmail = null;
 
+               // userEmail = TempData["email"].ToString();
+                userEmail = TempData.Peek("email").ToString();
+
+            
             IEnumerable<Mission> missions = db.Database.SqlQuery<Mission>("SELECT * FROM Mission WHERE ID = " + id + "");
             IEnumerable<MissionQuestions> questions = db.Database.SqlQuery<MissionQuestions>("SELECT * FROM MissionQuestions WHERE missionID = " + id + "");
 

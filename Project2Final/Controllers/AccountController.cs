@@ -349,6 +349,7 @@ namespace Project2Final.Controllers
                         var lastname = lastNameClaim.Value;
 
                         TempData["email"] = email;
+                        
                     }
                     return RedirectToLocal(returnUrl);
                 case SignInStatus.LockedOut:
