@@ -1,6 +1,7 @@
 ﻿@model Project2Final.Models.Mission
 @{
     ViewBag.Title = "Mission Detail";
+    string email = ViewBag.userEmail;
 }
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
@@ -87,7 +88,7 @@
         <div class="panel-heading">
             <h4 class="panel-title">
                 <a data-toggle="collapse" data-parent="#accordion" href="#@question.missionQuestionID" class="collapsed">
-                    Q: @question.question
+                    Q: @question.question | @ViewBag.userEmail
                 </a>
             </h4>
         </div>
@@ -128,6 +129,7 @@
                 <label for="question">Question</label>
                 @Html.TextArea("question")
                 @Html.Hidden("missionID", Model.ID)
+                @Html.Hidden("usersEmail", email)
                 <button type="submit">Submit Question</button>
             }
             

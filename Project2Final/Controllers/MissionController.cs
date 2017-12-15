@@ -37,11 +37,14 @@ namespace Project2Final.Controllers
                 return HttpNotFound();
             }
 
+            string userEmail = TempData["email"].ToString();
+
             IEnumerable<Mission> missions = db.Database.SqlQuery<Mission>("SELECT * FROM Mission WHERE ID = " + id + "");
             IEnumerable<MissionQuestions> questions = db.Database.SqlQuery<MissionQuestions>("SELECT * FROM MissionQuestions WHERE missionID = " + id + "");
 
             ViewBag.missions = missions;
             ViewBag.questions = questions;
+            ViewBag.userEmail = userEmail;
 
             return View(mission);
         }
@@ -53,7 +56,7 @@ namespace Project2Final.Controllers
             //int missionID = ViewBag.missionID;
 
             string newQuestion = form["question"].ToString();
-            var usersEmail = TempData["email"].ToString(); //is the email not the userID?
+            string usersEmail = form[2].ToString(); //is the email not the userID?
             string missionID = form[1].ToString();
 
             db.Database.ExecuteSqlCommand("INSERT INTO MissionQuestions VALUES('" + newQuestion + "', null, '" + usersEmail + "', '" + missionID + "')");
