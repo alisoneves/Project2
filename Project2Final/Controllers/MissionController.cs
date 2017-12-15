@@ -82,7 +82,7 @@ namespace Project2Final.Controllers
             string questionID = form[1].ToString();
             string missionID = form[2].ToString();
 
-            var updateQuery = "UPDATE MissionQuestions SET answer = '" + userReply + "' WHERE missionQuestionID = " + questionID;
+            var updateQuery = "UPDATE MissionQuestions SET answer = '" + userReply + "' WHERE missionQuestionID = " + questionID + "";
 
             db.Database.ExecuteSqlCommand(updateQuery);
             db.SaveChanges();

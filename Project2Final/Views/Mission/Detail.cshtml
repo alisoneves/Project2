@@ -94,8 +94,8 @@
         </div>
         <div id="@question.missionQuestionID" class="panel-collapse collapsed collapse">
             <div class="panel-body">
-                <h5><span class="label label-primary">Answer</span></h5>
-                <p>A: @question.answer</p>
+                <h5><span class="label label-primary">Answer:</span></h5>
+                <p>@question.answer</p>
                 <div>
                     @using (Html.BeginForm("SubmitReply", "Mission", FormMethod.Post))
                     {
@@ -105,7 +105,7 @@
                         @Html.Hidden("questionID", questionID)
                         @Html.Hidden("missionID", Model.ID)
                         //this is supposed to pass the mission question ID to the submitreply function for the update query
-                        <button type="submit">Submit Question</button>
+                        <button type="submit">Submit Reply</button>
                     }
                 </div>
             </div>
